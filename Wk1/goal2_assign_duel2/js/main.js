@@ -8,51 +8,43 @@ Assignment: Goal 2 - Duel 2
 (function () {
 	console.log('Fight!');
 	
-	//player names
-	var playerOneName = "Batman";
-	var playerTwoName = "Superman";
-	
-	//player damage
-	var playerOneHealth = 100;
-	var playerTwoHealth = 100;
-	
-	//player health
-	var playerOneDamage = 30;
-	var playerTwoDamage = 30;
+	//player vars	
+	var fighter1 = ["Batman", 100, 30];
+	var fighter2 = ["Superman", 100, 30];
 	
 	//round
 	var round = 0;
 	
 	function fight() {
-		
-		alert(playerOneName+":"+playerOneHealth+"  *START*  "+playerTwoName+":"+playerTwoHealth);
+		 
+		alert(fighter1[0]+ ":"+ fighter1[1]+ "  *START*  " + fighter2[0] + ":" + fighter2[1]);
 		
 		for(var i = 0; i < 10; i++){
 			 //random formula is - Math.floor(Math.random() * (max - min) + min);
 			 
-			 var minDamage1 = playerOneDamage * .5;
-			 var minDamage2 = playerTwoDamage * .5;
-			 var f1 = Math.floor(Math.random()*(playerOneDamage-minDamage1)+minDamage1);
-			 var f2 = Math.floor(Math.random()*(playerTwoDamage-minDamage2)+minDamage2);
+			 var minDamage1 = fighter1[2] * .5;
+			 var minDamage2 = fighter2[2] * .5;
+			 var f1 = Math.floor(Math.random()*(fighter1[2] - minDamage1)+minDamage1);
+			 var f2 = Math.floor(Math.random()*(fighter1[2] - minDamage2)+minDamage2);
 			 
 			 //console.log(f1);
 			 //console.log(f2);
 			 
 			 //Inflict damage
-			 playerOneHealth-=f1;
-			 playerTwoHealth-=f2;
+			 fighter1[1]-=f1;
+			 fighter2[1]-=f2;
 			 
-			 //console.log(playerOneHealth);
-			 //console.log(playerTwoHealth);
+			 //console.log(fighter1[1]);
+			 //console.log(fighter2[1]);
 			 
-			 console.log(playerOneName+": "+playerOneHealth + " " + playerTwoName+":"+playerTwoHealth);
+			 console.log(fighter1[0]+": "+fighter1[1] + " " + fighter2[0]+":"+fighter2[1]);
 			 
 			 var result = winnerCheck();
 			 console.log(result);
 			 
 			 if (result==="no winner") {
                 round++;
-                alert(playerOneName+":"+playerOneHealth+"  *ROUND "+round+" OVER"+"*  "+playerTwoName+":"+playerTwoHealth);
+                alert(fighter1[0]+":"+fighter1[1]+"  *ROUND "+round+" OVER"+"*  "+fighter2[0]+":"+fighter2[1]);
 
             } else {
                 alert(result);
@@ -64,12 +56,12 @@ Assignment: Goal 2 - Duel 2
 	
 	function winnerCheck(){
 		 var result="no winner";
-        if (playerOneHealth<1 && playerTwoHealth<1) {
+        if (fighter1[1]<1 && fighter2[1]<1) {
             result = "You Both Die";
-        } else if(playerOneHealth<1) {
-            result =playerTwoName+" WINS!!!"
-        } else if (playerTwoHealth<1) {
-            result = playerOneName+" WINS!!!"
+        } else if(fighter1[1]<1) {
+            result =fighter2[0]+" WINS!!!"
+        } else if (fighter2[1]<1) {
+            result = fighter1[0]+" WINS!!!"
         };
        return result;	
 	};
