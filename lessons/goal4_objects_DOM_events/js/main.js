@@ -468,7 +468,7 @@ console.log(nav1);
         attr = href, src, class
 */
 
-
+console.log('------------ Manipulating HTML -------------------');
 
 /*
 	==================================================================
@@ -499,6 +499,8 @@ Sample Link: http://www.instructables.com/files/deriv/FJI/WGSW/FPIUQQ3K/FJIWGSWF
 */
 
 
+	var bigImage = document.querySelector('#contentPreview img');
+	bigImage.setAttribute('src',"http://www.instructables.com/files/deriv/FJI/WGSW/FPIUQQ3K/FJIWGSWFPIUQQ3K.MEDIUM.jpg");
 
 /*
 	==================================================================
@@ -533,6 +535,17 @@ console.log('------------ DOM Events Ex 1-------------------');
 
 var nav = document.querySelectorAll('#nav li a');
 
+	for(var i = 0, max = nav.length; i < max; i++) {
+		console.log(nav[i]);
+		
+		nav[i].onclick = function(e) {
+			console.log(e);
+			
+			e.preventDefault; //always remember
+			return e;	
+		};
+		
+	};
 
 /*
 // this just console.log's when a click occurs
