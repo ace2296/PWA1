@@ -1,0 +1,77 @@
+/*
+	* Mid Terms for PWA-1
+*/
+(function () {
+
+var studentName = document.querySelector("#name").querySelector("p");
+var studentAddress = document.querySelector("#address").querySelector("p");
+var studentGPA = document.querySelector("#gpa").querySelector("p");
+var date = document.querySelector("#date").querySelector("p");
+var studentAvgGpa = document.querySelector("#gpaavg").querySelector("p");
+var studentPhone = document.querySelector("#phone").querySelector("p");
+
+button.onclick = fight;
+
+
+var student = [{
+	name: 'Andre Guerra',
+	address: {
+		street: '123 Way Street',
+		city: 'Bend',
+		state: 'OR',
+	},
+	GPA: [4.0,3.5,3.2],
+	
+	addStudent : function(theName, theStreet, theCity, theState, theGPA) {
+ 
+	  this.name = theName;
+	  this.gpa = theGPA
+	  
+	  this.address = {
+	    street : theStreet,
+	    city : theCity,
+	    state : theState
+	  },
+ 
+	  
+	  this.viewStudent = function () {
+    
+	    console.log(this.name);
+	    console.log(this.address.street);
+	    console.log(this.address.city);
+	    console.log(this.address.state);
+    
+		}
+ 
+	}, //end addStudent
+
+	//method to return address
+	showAddress : function() { //method
+		var addr = this.address.street + ', ' + this.address.city + ' ' + this.address.state ;
+		return addr;
+	}
+	
+}];
+ 
+// function to create and add student object to aray
+student.addStudent('Jimmy Fallon','30 Rockefeller Plaza','New York','NY',[3.1,3.8,2.9]);
+
+studentName.innerHTML = student.name;
+studentAddress.innerHTML = student.showAddress();
+studentGPA.innerHTML = student.gpa;
+
+
+
+//student['GPA'] = [4.0,3.5,3.2]; //index notation
+//student.GPA = [4.0,3.5,3.2]; //dot notation
+/*
+console.log('Name: ' + student.name);
+console.log('Address: ' + student.showAddress());
+console.log('GPA: ' + student.GPA);
+
+console.log('Name: ' + addStudent.name);
+console.log('Address: ' + addStudent.showAddress());
+console.log('GPA: ' + addStudent.GPA);
+*/
+
+})();

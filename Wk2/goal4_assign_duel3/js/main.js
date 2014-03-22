@@ -6,68 +6,78 @@ Assignment: Goal 3 - Duel 2
 
 //self-executing function
 (function () {
-	console.log('Fight!');
-	
-	//player vars	
-	var fighter1 = {name:"Batman", damage:100, health:30};
-	var fighter2 = {name:"Superman", damage:100, health:30};
-	
-	//round
-	var round = 0;
-	
-	document.getElementId('fight_btn').onclick.function fight() {
-		 
-		document.getElementById('round').setAttribute(fighter1['name']+ ":"+ fighter1['damage']+ "  *START*  " + fighter2['name'] + ":" + fighter2['damage']);
-		
-		//for(var i = 0; i < 10; i++){
-			 //random formula is - Math.floor(Math.random() * (max - min) + min);
-			 
-			 var minDamage1 = fighter1['health'] * .5;
-			 var minDamage2 = fighter2['health'] * .5;
-			 var f1 = Math.floor(Math.random()*(fighter1['health'] - minDamage1)+minDamage1);
-			 var f2 = Math.floor(Math.random()*(fighter1['health'] - minDamage2)+minDamage2);
-			 
-			 //console.log(f1);
-			 //console.log(f2);
-			 
-			 //Inflict damage
-			 fighter1['damage']-=f1;
-			 fighter2['damage']-=f2;
-			 
-			 //console.log(fighter1['damage']);
-			 //console.log(fighter2['damage']);
-			 
-			 console.log(fighter1['name']+": "+fighter1['damage'] + " " + fighter2['name']+":"+fighter2['damage']);
-			 
-			 var result = winnerCheck();
-			 console.log(result);
-			 
-			 if (result==="no winner") {
-                round++;
-                document.getElementById('round').setAttribute(fighter1['name']+":"+fighter1['damage']+"  *ROUND "+round+" OVER"+"*  "+fighter2['name']+":"+fighter2['damage']);
 
-            } else {
-                document.getElementId('round').innerHTML((result));
-                break;
-            };
+console.log("fight");
 
-		}
-	//};
-	
-	function winnerCheck(){
-		 var result="no winner";
-        if (fighter1['damage']<1 && fighter2['damage']<1) {
-            result = "You Both Die";
-        } else if(fighter1['damage']<1) {
-            result =fighter2['name']+" WINS!!!"
-        } else if (fighter2['damage']<1) {
-            result = fighter1['name']+" WINS!!!"
-        };
-       return result;	
-	};
-	
-	//Program Begins
-	console.log('Program begins');
-	fight();
+var fighter1_txt = document.querySelector("#kratos").querySelector("p");
+var fighter2_txt = document.querySelector("#kabal").querySelector("p");
+var round_txt = document.querySelector("h4");
+var button = document.getElementById("fight_btn");
+
+console.log();
+
+button.onclick = fight;
+
+var fighters = [
+    {
+        name: "Spiderman",
+        damage: 20,
+        health: 100
+    },
+    {
+        name: "Batman",
+        damage: 20,
+        health: 100
+    }];
+
+var round = 1;
+
+round_txt.innerHTML = "Click to start fight";
+fighter1_txt.innerHTML = fighters[0].name + ":" + fighters[0].health;
+fighter2_txt.innerHTML = fighters[1].name + ":" + fighters[1].health;
+
+function fight(){
+    fighter1_txt.innerHTML = fighters[0].name + "." + fighters[0].health;
+    fighter2_txt.innerHTML = fighters[1].name + "." + fighters[1].health;
+
+    //determine damage
+    var f1 = Math.floor(Math.random() * fighters[0].damage + fighters[0].damage * .5);
+    var f2 = Math.floor(Math.random() * fighters[1].damage + fighters[1].damage * .5);
+
+    //inflict damage
+    fighters[0].health -= f1;
+    fighters[1].health -= f2;
+
+    //checkfor victor
+    var result = winnerCheck();
+    console.log(result);
+
+    round_txt.innerHTML = "ROUND " + round + " complete";
+    round++;
+
+    if(result === "no winner"){
+        fighter1_txt.innerHTML = fighters[0].name + "." + fighters[0].health;
+        fighter2_txt.innerHTML = fighters[1].name + "." + fighters[1].health;
+    }else{
+        fighter1_txt.innerHTML = result;
+        fighter2_txt.innerHTML = "";
+
+        button.onclick = "return false";
+        document.querySelector('.buttonblue').innerHTML = "DONE!";
+    }
+}
+
+function winnerCheck(){
+    var result = "no winner";
+    if(fighters[0].health < 1 && fighters[1].health < 1){
+        result = "You both Die";
+    }else if(fighters[0].health < 1){
+        result = fighters[1].name + " Wins"
+    }else if (fighters[1].health < 1){
+        result = fighters[0].name + " Wins"
+    }
+    return result;
+}
+
 	
 })();
