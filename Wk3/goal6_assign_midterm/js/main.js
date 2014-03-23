@@ -3,13 +3,14 @@
 */
 (function () {
 
-var studentName = document.querySelector("#name").querySelector("p");
+/* var studentName = document.querySelector("#name").querySelector("p");
 var studentAddress = document.querySelector("#address").querySelector("p");
 var studentGPA = document.querySelector("#gpa").querySelector("p");
 var date = document.querySelector("#date").querySelector("p");
 var studentAvgGpa = document.querySelector("#gpaavg").querySelector("p");
-var studentPhone = document.querySelector("#phone").querySelector("p");
-var button = document.getElementById("info_btn");
+var studentPhone = document.querySelector("#phone").querySelector("p");*/
+
+var button = document.getElementById("info_btn"); 
 
 //button.onclick = ;
 
@@ -23,15 +24,15 @@ var student = [{
 	},
 	GPA: [4.0,3.5,3.2],
 	
-	addStudent : function(theName, theStreet, theCity, theState, theGPA) {
+	addStudent : function(name2, street2, city2, state2, gpa2) {
  
-	  student.name = theName;
-	  student.gpa = theGPA
+	  this.name = name2;
+	  this.gpa = gpa2
 	  
-	  student.address = {
-	    street : theStreet,
-	    city : theCity,
-	    state : theState
+	  this.address = {
+	    street : street2,
+	    city : city2,
+	    state : state2
 	  }
   
 	}, //end addStudent
@@ -41,7 +42,6 @@ var student = [{
 		var addr = this.address.street + ', ' + this.address.city + ' ' + this.address.state ;
 		return addr;
 	}
-	
 }];
  
 // function to create and add student object to aray
