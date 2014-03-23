@@ -88,7 +88,7 @@ function next() {
     innerDate.innerHTML = 'Date:  ' + studentArray[i].date;
 	//innerAvgGpa.innerHTML = 'Average GPA:  ' + avg;
 	
-    //console.log(students[i].gpa);
+    //console.log(studentArray[i].gpa);
   
     //var avg = gpaAvg(studentArray[i].gpa);
     
