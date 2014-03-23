@@ -3,66 +3,73 @@
 */
 (function () {
 
-/* var studentName = document.querySelector("#name").querySelector("p");
-var studentAddress = document.querySelector("#address").querySelector("p");
-var studentGPA = document.querySelector("#gpa").querySelector("p");
-var date = document.querySelector("#date").querySelector("p");
-var studentAvgGpa = document.querySelector("#gpaavg").querySelector("p");
-var studentPhone = document.querySelector("#phone").querySelector("p");*/
-
 var button = document.getElementById("info_btn"); 
 
-//button.onclick = ;
-
-
-var student = [{
+var studentArray = {
 	name: 'Andre Guerra',
 	address: {
 		street: '123 Way Street',
 		city: 'Bend',
 		state: 'OR',
 	},
-	GPA: [4.0,3.5,3.2],
-	
-	addStudent: function(name2, street2, city2, state2, gpa2) {
+	gpa: [4.0,3.5,3.2]
+};
+
+console.log('Name: ' + studentArray.name);
+console.log('Address: ' + studentArray.address.street + ', ' + studentArray.address.city + ' ' + studentArray.address.state);
+console.log('GPA: ' + studentArray.gpa);
  
-	  this.name = name2,
-	  this.gpa = gpa2,
-	  
-	  this.address = {
-	    street : street2,
-	    city : city2,
-	    state : state2
-	  }
+// JS "Class"
+function Student (theName, theStreet, theCity, theState, theGPA) {
+ 
+  this.name = theName;
+  this.gpa = theGPA
   
-	}, //end addStudent
-
-	//method to return address
-	showAddresss : function() { //method
-		var addr = this.address.street + ', ' + this.address.city + ' ' + this.address.state ;
-		return addr;
-	}
-}];
+  this.address = {
+    street : theStreet,
+    city : theCity,
+    state : theState
+  }
  
-// function to create and add student object to aray
-student.addStudent('Jimmy Fallon','30 Rockefeller Plaza','New York','NY',[3.1,3.8,2.9]);
+    console.log('Name: ' + this.name);
+    console.log('Address: ' + this.address.street + ', ' + this.address.city + ' ' + this.address.state);
+    console.log('GPA: ' + this.gpa);
+ 
+}
+ 
+// function to create and add student object to array
+function addStudent (theName, theStreet, theCity, theState, theGPA) {
+  
+  studentArray.push(new Student(theName, theStreet, theCity, theState, theGPA));
+  
+}
 
-studentName.innerHTML = student.name;
-studentAddress.innerHTML = student.showAddress();
-studentGPA.innerHTML = student.gpa;
+Student('Bugs Bunny', '123 Bond St', 'Waco', 'TX', [3.0,3.1,2.2]);
+Student('Willy Wonka', '123 Wonka Way', 'Candy', 'NY', [4.0,3.7,3.8]);
+
+//Average GPA function
+
+var gpa = function(arr){
+
+        var sum = 0;
+
+        for(i= 0, j = arr.length; i < j; i++){   
+            sum = sum + arr[i];
+        }
+        var avg = sum / arr.length;                
+        return avg;                                 
+    };
 
 
 
-//student['GPA'] = [4.0,3.5,3.2]; //index notation
-//student.GPA = [4.0,3.5,3.2]; //dot notation
+button.onclick = next;
 
-console.log('Name: ' + student.name);
-console.log('Address: ' + student.showAddress());
-console.log('GPA: ' + student.GPA);
+function next() {
+	document.querySelector("#name").querySelector("p").innerHTML = 'Name: ' + studentArray.name;
+	document.querySelector("#address").querySelector("p").innerHTML = 'Address: ' + studentArray.address.street + ', ' + studentArray.address.city + ' ' + studentArray.address.state;
+	document.querySelector("#gpa").querySelector("p").innerHTML = 'GPA: ' + studentArray.gpa;
+}
 
-console.log('Name: ' + addStudent.name);
-console.log('Address: ' + addStudent.showAddress());
-console.log('GPA: ' + addStudent.GPA);
 
 
 })();
