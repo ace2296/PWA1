@@ -9,8 +9,9 @@ var studentGPA = document.querySelector("#gpa").querySelector("p");
 var date = document.querySelector("#date").querySelector("p");
 var studentAvgGpa = document.querySelector("#gpaavg").querySelector("p");
 var studentPhone = document.querySelector("#phone").querySelector("p");
+var button = document.getElementById("info_btn");
 
-button.onclick = fight;
+//button.onclick = ;
 
 
 var student = [{
@@ -24,29 +25,19 @@ var student = [{
 	
 	addStudent : function(theName, theStreet, theCity, theState, theGPA) {
  
-	  this.name = theName;
-	  this.gpa = theGPA
+	  student.name = theName;
+	  student.gpa = theGPA
 	  
-	  this.address = {
+	  student.address = {
 	    street : theStreet,
 	    city : theCity,
 	    state : theState
-	  },
- 
-	  
-	  this.viewStudent = function () {
-    
-	    console.log(this.name);
-	    console.log(this.address.street);
-	    console.log(this.address.city);
-	    console.log(this.address.state);
-    
-		}
- 
+	  }
+  
 	}, //end addStudent
 
 	//method to return address
-	showAddress : function() { //method
+	showAddresss : function() { //method
 		var addr = this.address.street + ', ' + this.address.city + ' ' + this.address.state ;
 		return addr;
 	}
@@ -64,7 +55,7 @@ studentGPA.innerHTML = student.gpa;
 
 //student['GPA'] = [4.0,3.5,3.2]; //index notation
 //student.GPA = [4.0,3.5,3.2]; //dot notation
-/*
+
 console.log('Name: ' + student.name);
 console.log('Address: ' + student.showAddress());
 console.log('GPA: ' + student.GPA);
@@ -72,6 +63,6 @@ console.log('GPA: ' + student.GPA);
 console.log('Name: ' + addStudent.name);
 console.log('Address: ' + addStudent.showAddress());
 console.log('GPA: ' + addStudent.GPA);
-*/
+
 
 })();
