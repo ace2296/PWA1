@@ -24,10 +24,10 @@ var student = [{
 	},
 	GPA: [4.0,3.5,3.2],
 	
-	addStudent : function(name2, street2, city2, state2, gpa2) {
+	addStudent: function(name2, street2, city2, state2, gpa2) {
  
-	  this.name = name2;
-	  this.gpa = gpa2
+	  this.name = name2,
+	  this.gpa = gpa2,
 	  
 	  this.address = {
 	    street : street2,
