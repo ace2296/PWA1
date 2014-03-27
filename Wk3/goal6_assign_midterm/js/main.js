@@ -2,7 +2,7 @@
 	* Mid Terms for PWA-1
 */
 (function () {
-
+"use strict";
 var button = document.getElementById("info_btn"); 
 var i = 0;
 
@@ -58,12 +58,15 @@ addStudent('Willy Wonka', '123 Wonka Way', 'Candy', 'NY', [4.0,3.7,3.8], student
 
 //Average GPA function
 
-var gpaAvg = function(arr){
+//var gpaAvg = function(arr){
+
+function gpaAvg(arr){
 
         var sum = 0;
+        var j = 0;
 
-        for(i= 0, j = arr.length; i < j; i++){   
-            sum = sum + arr[i];
+        for(j= 0; j < arr.length; j++){   
+            sum = sum + arr[j];
         }
         var avg = sum / arr.length;                
         return avg;                                 
@@ -74,6 +77,7 @@ var gpaAvg = function(arr){
 button.onclick = next;
 
 function next() {
+   
 
    var innerName = document.querySelector("#name").querySelector("p");
    var innerAddress = document.querySelector("#address").querySelector("p");
@@ -81,12 +85,13 @@ function next() {
    var innerAvgGpa = document.querySelector("#gpaavg").querySelector("p");
    var innerDate = document.querySelector("#date").querySelector("p");
 
-   if (i !== max+1){
+   if (i < max + 1){
+       
     innerName.innerHTML = 'Name:  ' + studentArray[i].name;
     innerAddress.innerHTML = 'Address:  ' + studentArray[i].address.street + ' ' + studentArray[i].address.city + ' ' + studentArray[i].address.state;
-    innerGpa.innerHTML = 'GPA:  ' + studentArray[i].gpa;
+    innerGpa.innerHTML = 'GPA:  ' + gpaAvg(studentArray[i].gpa);
     innerDate.innerHTML = 'Date:  ' + studentArray[i].date;
-	//innerAvgGpa.innerHTML = 'Average GPA:  ' + avg;
+	innerAvgGpa.innerHTML = 'Average GPA:  ' + gpaAvg(studentArray[i].gpa);
 	
     //console.log(studentArray[i].gpa);
   
@@ -102,7 +107,7 @@ function next() {
     return false;
 
 }
-var max = studentArray.length;
+var max = studentArray.length - 1;
 
 
 })();
