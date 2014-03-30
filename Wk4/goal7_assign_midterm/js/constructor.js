@@ -1,3 +1,4 @@
+ (function () {
  var Student = function(studentName, studentStreet, studentCity, studentState, studentGPA, date) {
 	
 	this.name = studentName;
@@ -20,3 +21,5 @@
         var avg = sum / arr.length;                
         return avg;                                 
  };
+ 
+ })();
