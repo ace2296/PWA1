@@ -20,17 +20,7 @@ var i = 0;
         date: new Date()
     }];*/
  
- 
- var Student = function(studentName, studentStreet, studentCity, studentState, studentGPA, date) {
-	
-	this.name = studentName;
-	this.address = {street: studentStreet, city: studentCity, state: studentState};
-	this.gpa = studentGPA;
- 	
- 	console.log('Name: ' + this.name);
- 	console.log('Address: ' + this.address.street + ', ' + this.address.city + ' ' + this.address.state);
- 	console.log('GPA: ' + this.gpa);
- };
+
  
  var studentProfiles = [
  	new Student('Andre Guerra', '63955 Pioneer Loop Bend', 'OR', [2.5, 3.0, 4.0], new Date()),
@@ -38,19 +28,8 @@ var i = 0;
  	new Student('Mark Zuckerberg', '1601 Willow Rd', 'Menlo Park', 'CA', [2.5, 3.0, 4.0], new Date())
  ];
  
-//Average GPA function
 
-Student.prototype.gpaAvg = function(arr){
 
-        var sum = 0;
-        var j = 0;
-
-        for(j= 0; j < arr.length; j++){   
-            sum = sum + arr[j];
-        }
-        var avg = sum / arr.length;                
-        return avg;                                 
- };
  
  console.log(Student.gpaAvg);
 
@@ -88,7 +67,7 @@ var next = function(e) {
     innerName.innerHTML = 'Name:  ' + Student[i].name;
     innerAddress.innerHTML = 'Address:  ' + Student[i].studentAddress.studentStreet + ' ' + Student[i].studentAddress.studentCity + ' ' + Student[i].studentAddress.studentState;
     innerGpa.innerHTML = 'GPA:  ' + gpaAvg(Student[i].studentGPA);
-    innerDate.innerHTML = 'Date:  ' + Student[i].date;
+    innerDate.innerHTML = 'Date:  ' + Student[i].getDate();
 	innerAvgGpa.innerHTML = 'Average GPA:  ' + gpaAvg(Student[i].studentGPA);
 
     }else{
