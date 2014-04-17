@@ -8,7 +8,7 @@
  */
 
 //Game variables
-(function ()
+(function () {
 
 var playerGuess = 0;
 var guessesMade = 0;
