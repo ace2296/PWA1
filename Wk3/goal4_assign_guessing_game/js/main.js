@@ -45,6 +45,7 @@ var validateInput = function(){
 
 };
 
+//play function to give result of the playerGuess
 var play = function(){
 	guessesMade++;
     guessesRemain--;
@@ -67,6 +68,20 @@ var play = function(){
         gameOver(false);
     }
 };
+
+//Result of a win or loss
+var gameOver = function (won){
+    if(won){
+        dom.output.innerHTML = "Woohoo! You guessed the magic number: " + magicNum + " !" + "<br>"
+        + "It only took you " + guessesMade + " guesses.";
+    } else{
+        dom.output.innerHTML = "No more guesses left! Better luck next time " + "<br>"
+        + "The magic number was " + magicNum;
+    }
+};
+
+//Disable button
+dom.button.removeEventListener("click", clickFn, false);
 
 
 
