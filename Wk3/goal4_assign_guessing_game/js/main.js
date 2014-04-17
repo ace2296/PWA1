@@ -10,7 +10,7 @@
 //Game variables
 (function ()
 
-var playersGuess = 0;
+var playerGuess = 0;
 var guessesMade = 0;
 var guessesRemain = 3;
 var gameState = 0;
@@ -31,19 +31,43 @@ var clickFn = function(e){
 
 // function to validate playersGuess
 var validateInput = function(){
-    playersGuess = parseInt(dom.input.value);
+    playerGuess = parseInt(dom.input.value);
 
-    if(isNaN(playersGuess)){
+    if(isNaN(playerGuess)){
         dom.input.innerHTML = "Please enter a number:";
 
-    } else if(playersGuess < 1 || playersGuess > 10){
+    } else if(playerGuess < 1 || playerGuess > 10){
         dom.input.innerHTML = "Please enter a number between 1 and 10";
 
     } else {
-        playGame();
+    	play();
     }
 
 };
+
+var play = function(){
+	guessesMade++;
+    guessesRemain--;
+    gameState = "Guess: " + guessesMade + ", Remaining" + guessesRemain;
+
+    playerGuess = parseInt(dom.input.value);
+
+    if(playerGuess > magicNum){
+        dom.output.innerHTML = "Your guess is too high. Please try again." + gameState;
+
+    } else if(playerGuess < magicNum){
+        dom.output.innerHTML = "Your guess is too low. Please try again" + gameState;
+
+    } else if(playerGuess === magicNum){
+        gameOver(true);
+    }
+
+    if(guessesRemain < 1){
+    	console.log("Game Over : guessesRemaining is < 1");
+        gameOver(false);
+    }
+};
+
 
 
 })();
