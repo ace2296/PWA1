@@ -8,7 +8,7 @@
  */
 
 //Game variables
-(function () {
+(function() {
 
 var playerGuess = 0;
 var guessesMade = 0;
@@ -16,9 +16,9 @@ var guessesRemain = 3;
 var gameState = 0;
 	
 var dom = {
-	button: document.querySelector("#button")
+	button: document.querySelector("#button"),
     input: document.querySelector("#input"),
-	output: document.querySelector("#ouput"),
+	output: document.querySelector("#ouput")
 };
 
 //Generate random number to guess
