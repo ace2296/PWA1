@@ -10,77 +10,57 @@
 //Game variables
 (function() {
 
-	var playerGuess = 0;
-	var madeGuesses = 0;
-	var remainingGuesses = 3;
-	var status = "";
-		
-	var dom = {
-		button: document.querySelector("#button"),
-	    input: document.querySelector("#input"),
-		output: document.querySelector("#ouput")
-	};
-	
-	//Generate random number to guess
-	var magicNum = Math.floor(Math.random()* 10 +1);
-	//console.log (magicNum);
-	
-	//Adds functionality to the button
-	dom.button.addEventListener("click",clickFn);
-	
-	//Disable button fuction
-	function disableButton(){
-		dom.button.removeEventListener("click", clickFn);
-		//console.log("button is disabled");
-	}
-	
-	function clickFn(){
-		validate();
-	};
-	
-	// function to validate playersGuess
-	function validate(){
-	    playerGuess = parseInt(dom.input.value);
-	
-	    if(isNaN(playerGuess)){
-	        dom.input.innerHTML = "Please enter a number:";
-	
-	    } else if(playerGuess < 1 || playerGuess > 10){
-	        dom.input.innerHTML = "Please enter a number between 1 and 10";
-	
-	    } else {
-	    	play();
-	    }
-	
-	};
-	
-	//play function to give result of the playerGuess
-	function play(){
-	    remainingGuesses--;
-	    madeGuesses++;
-	    status = "Guess: " + madeGuesses + ", Remaining" + remainingGuesses;
-	
-	    playerGuess = parseInt(dom.input.value);
-	
-	    if(playerGuess > magicNum){
-	        dom.output.innerHTML = "Your guess is too high. Please try again." + status;
-	
-	    } else if(playerGuess < magicNum){
-	        dom.output.innerHTML = "Your guess is too low. Please try again" + status;
-	
-	    } else if(playerGuess === magicNum){
-	        dom.output.innerHTML = "Woohoo! You guessed the magic number: " + magicNum + " !" + "<br>"
-	        + "It only took you " + madeGuesses + " guesses.";
-	    }
-	
-	    if(remainingGuesses < 1){
-	    	console.log("Game Over! You are out of guesses.");
-	         dom.output.innerHTML = "No more guesses left! Better luck next time " + "<br>"
-	        + "The magic number was " + magicNum;
-	       
-	       //Disable Button 
-	        disableButton();
-	    }
-	};
+var random = ~~(Math.random() * 10 + 1),
+    query = document.getElementById("input").value,
+    result = document.getElementById("output"),
+    guessButton = document.querySelector('button'),
+    gameOver = false;
+    counter = 3;
+
+	console.log("Random number: ", random);
+	 
+ function button_click(event) {
+   query = document.getElementById("input").value;
+   
+   if(isNaN(query)){
+     output.innerHTML = "Please enter a number between 1 and 10";
+   }
+
+   if(query != "" && query > 0 && query < 11 && gameOver === false){
+     var numEval = function(){
+	     if(query === random){
+	       output.innerHTML = "Congratulations! You guessed the correct number.";
+	       gameOver = true;
+	     }else if(query > random && counter == 1){
+	       output.innerHTML = "Oops! Your guess was too high.";
+	       counter--;
+	     }else if(query != random && counter == 0){
+	       output.innerHTML = "Game Over";
+	       gameOver = true;
+	     }else if(query < random && counter == 1){
+	       output.innerHTML = "Eek! It looks like your guess was too low.";
+	       counter--;
+	     }else if(query > random){
+	       counter--;
+	       output.innerHTML = "The number you selected is too high. You have " + counter + " guesses left.";
+	     }else if(query < random){
+	       counter--;
+	       output.innerHTML = "The number you selected is too low. You have " + counter + " guesses left.";
+	     } 
+   }();
+   
+   }else if(gameOver === true){
+    output.innerHTML = "Please refesh your web browser to play again.";
+    guessButton.removeEventListener('click', button_click, false);
+   }
+ }
+
+ window.addEventListener('keyup', function(e){
+   if(e.keyCode === 13){
+     button_click();
+   }
+ }, false);
+
+ guessButton.addEventListener('click', button_click, false);
 
 })();
